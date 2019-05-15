@@ -124,8 +124,9 @@ if initial_time>'09:20:00':
     lowest = []
     timeNow = []
     highest = []
-    
-    month = '201902'
+
+    month_today = str(datetime.today())    
+    month = month_today.replace(" ", "_")
     
     directory = 'C:\Hupai\screenshot_{}/'.format(month)
     if not os.path.exists(directory):
