@@ -134,7 +134,7 @@ if initial_time>'09:20:00':
     
     	
     i = 0
-    while i<900:
+    while i<1800:
         fn = "screen_{}".format(i)
         new_dir = directory + fn
         pyautogui.screenshot("{}.png".format(new_dir))
