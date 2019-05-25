@@ -54,7 +54,7 @@ def price_recognition(img_gray, template_image, relative_h, relative_w):
     print("{}, {}, {}, {}".format(loc1_x, loc1_y, w1, h1))
     if loc1_x > 0:
         crop_img1 = img_gray[int(loc1_y+h1-h1*relative_h):loc1_y+h1, loc1_x+w1:int(loc1_x+w1+w1*relative_w)]
-        cv2.imwrite('{}{}/{}_crop_{}.png'.format(my_dir, fn, fn, str(datetime.today()).replace(" ", "")), crop_img1)
+ #       cv2.imwrite('{}{}/{}_crop_{}.png'.format(my_dir, fn, fn, str(datetime.today()).replace(" ", "")), crop_img1)
         text1 = pytesseract.image_to_string(crop_img1, lang='eng', config = '-c tessedit_char_whitelist=0123456789')
         print(text1)
         text1_s = ''.join(i for i in text1 if i.isdigit())
@@ -82,7 +82,7 @@ url1 = 'https://paimai.alltobid.com/'
 
 #url2='https://paimai.alltobid.com/bid/2018091501/bid.htm'
 
-url='https://paimai2.alltobid.com/bid/9a7c073cfdc24e11b31ee9a54bb696ad/bid.htm'
+url='https://paimai2.alltobid.com/bid/921b37e877a843279394ee48585fdc48/bid.htm'
 
 y_shift = 0
 
@@ -127,7 +127,7 @@ if initial_time>'09:20:00':
 
     month_today = str(datetime.today())    
     month = month_today.replace(" ", "_")
-    
+    month = '201905'
     directory = 'C:\Hupai\screenshot_{}/'.format(month)
     if not os.path.exists(directory):
     	os.makedirs(directory)
@@ -138,13 +138,13 @@ if initial_time>'09:20:00':
         fn = "screen_{}".format(i)
         new_dir = directory + fn
         pyautogui.screenshot("{}.png".format(new_dir))
-        img = Image.open(new_dir + '.png')
+        img = cv2.imread(new_dir + '.png')
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
 
         print("Round {}".format(i))
         # Convert it to grayscale
-        img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
+        img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         #cv2.imwrite('{}_gray.png'.format(new_dir),img_gray)
     
         time.sleep(0.2)
