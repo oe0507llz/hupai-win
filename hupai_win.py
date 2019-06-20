@@ -6,12 +6,19 @@ from PIL import Image
 import pytesseract
 #import pandas as pd
 from selenium import webdriver
-#from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.keys import Keys
 #from selenium.webdriver.common.action_chains import ActionChains
 import time
 from datetime import datetime
 from dateutil import tz
 import cv2
+import sys
+
+try:
+    url = sys.argv[1]
+except:
+    url = 'http://moni.51hupai.com/'
 
 from_zone = tz.gettz('UTC')
 
@@ -76,13 +83,14 @@ def price_recognition(img_gray, template_image, relative_h, relative_w):
             int_text1 = int(text1_r)
         return int_text1
 
+
 #url = 'http://moni.51hupai.com/'
 
-url1 = 'https://paimai.alltobid.com/'
+#url1 = 'https://paimai.alltobid.com/'
 
 #url2='https://paimai.alltobid.com/bid/2018091501/bid.htm'
 
-url='https://paimai2.alltobid.com/bid/921b37e877a843279394ee48585fdc48/bid.htm'
+#url='https://paimai2.alltobid.com/bid/921b37e877a843279394ee48585fdc48/bid.htm'
 
 y_shift = 0
 
@@ -92,8 +100,12 @@ x_shift = 0
 
 #x_shift = -150
 
-driver = webdriver.Ie("D:\\IEDriverServer.exe")
-#driver = webdriver.Ie()
+#driver = webdriver.Ie("D:\\IEDriverServer.exe")
+cap = DesiredCapabilities.INTERNETEXPLORER.copy()
+cap['ignoreProtectedModeSettings'] = True
+cap['ignoreZoomSetting'] = True
+driver = webdriver.Ie(capabilities=cap)
+driver.find_element_by_tag_name("html").send_keys(Keys.CONTROL, "0")
 driver.set_window_position(60,20)
 driver.set_window_size(1500,1200)
 driver.get(url)
