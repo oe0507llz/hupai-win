@@ -13,4 +13,4 @@
 * To enable Adobe Flash, run As Admin: dism /online /add-package /packagepath:"C:\Windows\servicing\Packages\Adobe-Flash-For-Windows-Package~31bf3856ad364e35~amd64~~10.0.14393.0.mum" Then reboot.
 
 ### How to run?
-If we would like to run it in moni, `python3 hupai_win.py`; if we would like to run it in real case, recover the line that defines url and `python3 hupai_win.py`. The other way is 'python3 hupai_win.py url_xxx'
+If we would like to run it in moni, `python3 hupai_win.py`; if we would like to run it in real case, recover the line that defines url and `python3 hupai_win.py`. The other way is `python3 hupai_win.py url_xxx`

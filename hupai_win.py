@@ -14,6 +14,14 @@ from datetime import datetime
 from dateutil import tz
 import cv2
 import sys
+import re
+
+def replace(string, substitutions):
+
+    substrings = sorted(substitutions, key=len, reverse=True)
+    regex = re.compile('|'.join(map(re.escape, substrings)))
+    return regex.sub(lambda match: substitutions[match.group(0)], string)
+
 
 try:
     url = sys.argv[1]
@@ -137,9 +145,11 @@ if initial_time>'09:20:00':
     timeNow = []
     highest = []
 
-    month_today = str(datetime.today())    
-    month = month_today.replace(" ", "_")
-    month = '201905'
+    month_today = str(datetime.today())   
+    substitution = {".": "_", " ": "_", ":": "_"}
+    month = replace(month_today, substitution)
+#    month = month_today.replace(" ", "_")
+#    month = '201905'
     directory = 'C:\Hupai\screenshot_{}/'.format(month)
     if not os.path.exists(directory):
     	os.makedirs(directory)
