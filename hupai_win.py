@@ -98,7 +98,7 @@ def price_recognition(img_gray, template_image, relative_h, relative_w):
 
 #url2='https://paimai.alltobid.com/bid/2018091501/bid.htm'
 
-#url='https://paimai2.alltobid.com/bid/921b37e877a843279394ee48585fdc48/bid.htm'
+url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
 
 y_shift = 0
 
@@ -241,6 +241,7 @@ if initial_time>'09:20:00':
         if (text2 >= "11:29:55"):
             #print("Number is defined, and click the button") 
             pyautogui.moveTo(992 + x_shift, 855 + y_shift)
+            pyautogui.moveTo(1140 + x_shift, 850 + y_shift)
             #pyautogui.moveTo(673, 455)
             pyautogui.click()
     	
