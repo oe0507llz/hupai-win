@@ -241,6 +241,7 @@ if initial_time>'09:20:00':
         if (text2 >= "11:29:55"):
             #print("Number is defined, and click the button") 
             pyautogui.moveTo(992 + x_shift, 855 + y_shift)
+            pyautogui.click()
             pyautogui.moveTo(1140 + x_shift, 850 + y_shift)
             #pyautogui.moveTo(673, 455)
             pyautogui.click()
