@@ -43,6 +43,7 @@ initial_time = datetime.strftime(local, "%H:%M:%S")
 print(initial_time)
 
 if mode == 'test':
+    url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
     if initial_time[6:] < '40':
         press_time_1 = initial_time[:6] + '44'
         press_time_2 = initial_time[:6] + '45'
@@ -113,7 +114,7 @@ def price_recognition(img_gray, template_image, relative_h, relative_w):
 
 #url2='https://paimai.alltobid.com/bid/2018091501/bid.htm'
 
-url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
+#url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
 
 y_shift = 0
 
