@@ -24,9 +24,9 @@ def replace(string, substitutions):
 
 
 try:
-    url = sys.argv[1]
+    mode = sys.argv[1]
 except:
-    url = 'http://moni.51hupai.com/'
+    mode = 'http://moni.51hupai.com/'
 
 from_zone = tz.gettz('UTC')
 
@@ -41,6 +41,21 @@ local = utc.astimezone(to_zone)
 initial_time = datetime.strftime(local, "%H:%M:%S")
 
 print(initial_time)
+
+if mode == 'test':
+    if initial_time[6:] < '40':
+        press_time_1 = initial_time[:6] + '44'
+        press_time_2 = initial_time[:6] + '45'
+        submission_time = initial_time[:6] + '55'
+    else:
+        press_time_1 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '44'
+        press_time_2 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '45'
+        submission_time = initial_time[0:3] + str(int(initial_time[3:5])+1) + '55'
+elif mode == 'moni':
+    url = 'http://moni.51hupai.com/'
+else:
+    url = mode
+
 
 # Specify a threshold
 threshold = 0.75
@@ -216,7 +231,7 @@ if initial_time>'09:20:00':
         print(text2)
         print(lowest_price)
     	
-        if text2 == "11:29:44" or text2 == "11:29:45":
+        if text2 == press_time_1 or text2 == press_time_2:
     	#if text2 == "11:29:44" or text2 == "11:29:45":
             number_int = lowest_price +900
             number = str(number_int)
@@ -238,7 +253,7 @@ if initial_time>'09:20:00':
     	
 
 
-        if (text2 >= "11:29:55"):
+        if (text2 >= submission_time):
             #print("Number is defined, and click the button") 
             pyautogui.moveTo(992 + x_shift, 855 + y_shift)
             pyautogui.click()
