@@ -1,3 +1,5 @@
+url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
+
 import numpy as np
 import pyautogui
 import time
@@ -26,7 +28,7 @@ def replace(string, substitutions):
 try:
     mode = sys.argv[1]
 except:
-    mode = 'http://moni.51hupai.com/'
+    pass
 
 from_zone = tz.gettz('UTC')
 
@@ -43,7 +45,6 @@ initial_time = datetime.strftime(local, "%H:%M:%S")
 print(initial_time)
 
 if mode == 'test':
-    url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
     if initial_time[6:] < '40':
         press_time_1 = initial_time[:6] + '44'
         press_time_2 = initial_time[:6] + '45'
@@ -54,8 +55,6 @@ if mode == 'test':
         submission_time = initial_time[0:3] + str(int(initial_time[3:5])+1) + '55'
 elif mode == 'moni':
     url = 'http://moni.51hupai.com/'
-else:
-    url = mode
 
 
 # Specify a threshold
