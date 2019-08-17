@@ -1,5 +1,11 @@
 url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
 
+# Define different modes
+# python3 hupai.py test : use the real url in test mode
+# python3 hupai.py moni : use the moni url 
+# python3 hupai.py : use the real url
+
+
 import numpy as np
 import pyautogui
 import time
