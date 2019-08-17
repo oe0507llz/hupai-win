@@ -34,7 +34,7 @@ def replace(string, substitutions):
 try:
     mode = sys.argv[1]
 except:
-    pass
+    mode = 'real'
 
 from_zone = tz.gettz('UTC')
 
