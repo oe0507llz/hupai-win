@@ -59,8 +59,12 @@ if mode == 'test':
         press_time_1 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '44'
         press_time_2 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '45'
         submission_time = initial_time[0:3] + str(int(initial_time[3:5])+1) + '55'
-elif mode == 'moni':
-    url = 'http://moni.51hupai.com/'
+else:
+    press_time_1 = '11:29:44'
+    press_time_2 = '11:29:45'
+    submission_time = '11:29:55'
+    if mode == 'moni':
+        url = 'http://moni.51hupai.com/'
 
 
 # Specify a threshold
