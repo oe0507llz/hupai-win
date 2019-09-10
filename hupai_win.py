@@ -185,7 +185,7 @@ if initial_time>'09:20:00':
     while i<1800:
         fn = "screen_{}".format(i)
         new_dir = directory + fn
-        pyautogui.screenshot("{}.png".format(new_dir))
+        pyautogui.screenshot("{}.png".format(new_dir), region=(60, 20, 1500, 1200))
         img = cv2.imread(new_dir + '.png')
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
