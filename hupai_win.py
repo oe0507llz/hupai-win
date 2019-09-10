@@ -146,6 +146,7 @@ driver.get(url)
 #print(str(datetime.now())[11:19])
 
 if initial_time>'09:20:00':
+    time.sleep(30) # half a minute to enter login information
     # pyautogui.click(1151,428)
     pyautogui.keyDown('ctrl')
     time.sleep(1)
