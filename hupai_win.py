@@ -51,14 +51,9 @@ initial_time = datetime.strftime(local, "%H:%M:%S")
 print(initial_time)
 
 if mode == 'test':
-    if initial_time[6:] < '40':
-        press_time_1 = initial_time[:6] + '44'
-        press_time_2 = initial_time[:6] + '45'
-        submission_time = initial_time[:6] + '55'
-    else:
-        press_time_1 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '44'
-        press_time_2 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '45'
-        submission_time = initial_time[0:3] + str(int(initial_time[3:5])+1) + '55'
+    press_time_1 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '44'
+    press_time_2 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '45'
+    submission_time = initial_time[0:3] + str(int(initial_time[3:5])+1) + '55'
 else:
     press_time_1 = '11:29:44'
     press_time_2 = '11:29:45'
