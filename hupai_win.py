@@ -1,3 +1,11 @@
+url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
+
+# Define different modes
+# python3 hupai.py test : use the real url in test mode
+# python3 hupai.py moni : use the moni url 
+# python3 hupai.py : use the real url
+
+
 import numpy as np
 import pyautogui
 import time
@@ -24,9 +32,9 @@ def replace(string, substitutions):
 
 
 try:
-    url = sys.argv[1]
+    mode = sys.argv[1]
 except:
-    url = 'http://moni.51hupai.com/'
+    mode = 'real'
 
 from_zone = tz.gettz('UTC')
 
@@ -41,6 +49,18 @@ local = utc.astimezone(to_zone)
 initial_time = datetime.strftime(local, "%H:%M:%S")
 
 print(initial_time)
+
+if mode == 'test':
+    press_time_1 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '44'
+    press_time_2 = initial_time[0:3] + str(int(initial_time[3:5])+1) + '45'
+    submission_time = initial_time[0:3] + str(int(initial_time[3:5])+1) + '55'
+else:
+    press_time_1 = '11:29:44'
+    press_time_2 = '11:29:45'
+    submission_time = '11:29:55'
+    if mode == 'moni':
+        url = 'http://moni.51hupai.com/'
+
 
 # Specify a threshold
 threshold = 0.75
@@ -98,7 +118,7 @@ def price_recognition(img_gray, template_image, relative_h, relative_w):
 
 #url2='https://paimai.alltobid.com/bid/2018091501/bid.htm'
 
-url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
+#url='https://paimai.alltobid.com/bid/b901b3c0ba414c3bb7c08761aedbff50/bid.htm'
 
 y_shift = 0
 
@@ -121,6 +141,7 @@ driver.get(url)
 #print(str(datetime.now())[11:19])
 
 if initial_time>'09:20:00':
+    time.sleep(30) # half a minute to enter login information
     # pyautogui.click(1151,428)
     pyautogui.keyDown('ctrl')
     time.sleep(1)
@@ -159,7 +180,7 @@ if initial_time>'09:20:00':
     while i<1800:
         fn = "screen_{}".format(i)
         new_dir = directory + fn
-        pyautogui.screenshot("{}.png".format(new_dir))
+        pyautogui.screenshot("{}.png".format(new_dir), region=(60, 20, 1500, 1200))
         img = cv2.imread(new_dir + '.png')
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
@@ -216,7 +237,7 @@ if initial_time>'09:20:00':
         print(text2)
         print(lowest_price)
     	
-        if text2 == "11:29:44" or text2 == "11:29:45":
+        if text2 == press_time_1 or text2 == press_time_2:
     	#if text2 == "11:29:44" or text2 == "11:29:45":
             number_int = lowest_price +900
             number = str(number_int)
@@ -238,7 +259,7 @@ if initial_time>'09:20:00':
     	
 
 
-        if (text2 >= "11:29:55"):
+        if (text2 >= submission_time):
             #print("Number is defined, and click the button") 
             pyautogui.moveTo(992 + x_shift, 855 + y_shift)
             pyautogui.click()
