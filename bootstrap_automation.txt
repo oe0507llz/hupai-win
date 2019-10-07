@@ -1,0 +1,32 @@
+1. run windows powershell as admin
+2. ## download IE driver ##
+$client = new-object System.Net.WebClient
+$client.DownloadFile(“http://selenium-release.storage.googleapis.com/2.39/IEDriverServer_x64_2.39.0.zip”,“C:\Program Files\IEDriverServer_x64_2.39.0.zip”)
+cd 'C:\Program Files\'
+Expand-Archive -LiteralPath .\IEDriverServer_x64_2.39.0.zip .\
+3. ## add C:\Program Files to environment variable PATH ##
+$oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+$newpath = "$oldpath;C:\Program Files"
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
+reboot machine
+
+## referennce https://codingbee.net/powershell/powershell-make-a-permanent-change-to-the-path-environment-variable ##
+
+4. ##‏ add registration key: ##
+REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE" /v iexplore.exe /t REG_DWORD /d 0
+5. 
+## Add C:\Program Files (x86)\Tesseract-OCR\tessdata to PATH environment variable\##
+
+$oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
+
+$newpath = "$oldpath;C:\Program Files (x86)\Tesseract-OCR\tessdata"
+
+Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
+
+##add new environment variable tessdata path (C:\Program Files (x86)\Tesseract-OCR\tessdata) to TESSDATA_PREFIX##
+[System.Environment]::SetEnvironmentVariable('TESSDATA_PREFIX','C:\Program Files (x86)\Tesseract-OCR\tessdata',[System.EnvironmentVariableTarget]::Machine)
+
+6. 
+## Right click CMD or Powershell, run it as Admin and then pip3 install pyautogui Pillow pytesseract pandas selenium opencv-python python-dateutil or python3 -m pip install pyautogui Pillow pytesseract pandas selenium opencv-python python-dateutil ##
+
+pip install pyautogui Pillow pytesseract pandas selenium opencv-python python-dateutil 
